@@ -31,6 +31,10 @@ f_700 = []
 f_710 = []
 f_856 = []
 
+
+f_906 = []
+f_046 = []
+
 for sys_no in res:
     sys_no = sys_no.strip()
 
@@ -157,6 +161,16 @@ for sys_no in res:
             tmp = [sys_no, field]
             f_856.append(tmp)
 
+    for field in mc.get_fields('906'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_906.append(tmp)
+
+    for field in mc.get_fields('046'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_046.append(tmp)
+
 
 with io.open("output/res_024.txt", "w", encoding="utf-8") as f:
     f.write(u"024:\n\n")
@@ -260,3 +274,13 @@ with io.open("output/res_856.txt", "w", encoding="utf-8") as f:
     f.write(u"856:\n\n")
     for l in f_856:
         f.write(u"{}\t{}\t\t{}\n".format(unicode(l[0]), unicode(l[1]), l[1].format_field()))
+
+with io.open("output/extra_res_906.txt", "w", encoding="utf-8") as f:
+    f.write(u"906:\n\n")
+    for l in f_906:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/extra_res_046.txt", "w", encoding="utf-8") as f:
+    f.write(u"046:\n\n")
+    for l in f_046:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
