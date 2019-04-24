@@ -1,3 +1,4 @@
 *.marc
 .idea
-.txt
+output/*
+cache.*
