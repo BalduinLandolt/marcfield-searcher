@@ -1,6 +1,7 @@
 from pymarc import MARCReader
+from pymarc import Record, Field
 from PyZ3950 import zoom
-import os, codecs, io
+import os, io
 
 file_name = "all_numbers.txt"
 
@@ -10,8 +11,8 @@ with open(file_name) as f:
 print("found numbers: " + str(len(res)))
 print("")
 
+f_024 = []
 f_041 = []
-f_546 = []
 f_246_3 = []
 f_250 = []
 f_490 = []
@@ -20,6 +21,15 @@ f_510 = []
 f_525 = []
 f_533 = []
 f_534 = []
+f_544 = []
+f_546 = []
+f_581 = []
+f_596 = []
+f_600 = []
+f_655 = []
+f_700 = []
+f_710 = []
+f_856 = []
 
 for sys_no in res:
     sys_no = sys_no.strip()
@@ -49,28 +59,16 @@ for sys_no in res:
     mc = next(reader)
 
     ff = []
-    """
-    for field in mc.get_fields('505'):
-        print(unicode(field))
-        print(str(mc))
-        ff.append(field)
-    if len(ff) == 0:
-        print("No field 505 in: {}".format(sys_no))
-    else:
-        print(str(mc))
-    """
+
+    for field in mc.get_fields('024'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_024.append(tmp)
 
     for field in mc.get_fields('041'):
         if field is not None:
             tmp = [sys_no, field]
             f_041.append(tmp)
-
-    for field in mc.get_fields('546'):
-        if field is not None:
-            tmp = [sys_no, field]
-            f_546.append(tmp)
-        if len(mc.get_fields('546')) > 1:
-            f_546.append([u'\t\t !!!! Mehrfach !!!!', u''])
 
     for field in mc.get_fields('246'):
         if field is not None:
@@ -112,21 +110,60 @@ for sys_no in res:
             tmp = [sys_no, field]
             f_534.append(tmp)
 
-"""
-print("\n\n\n505:\n")
-for l in f_505:
-    print(u"{}\t{}".format(unicode(l[0]), unicode(l[1])))
+    for field in mc.get_fields('544'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_544.append(tmp)
 
-print("\n\n\n510:\n")
-for l in f_510:
-    print(u"{}\t{}".format(unicode(l[0]), unicode(l[1])))
+    for field in mc.get_fields('546'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_546.append(tmp)
+        if len(mc.get_fields('546')) > 1:
+            f_546.append([u'\t\t !!!! Mehrfach !!!!', u''])
 
-print("\n\n\n525:\n")
-for l in f_525:
-    print(u"{}\t{}".format(unicode(l[0]), unicode(l[1])))
-"""
+    for field in mc.get_fields('581'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_581.append(tmp)
 
-with io.open("output/res_401.txt", "w", encoding="utf-8") as f:
+    for field in mc.get_fields('596'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_596.append(tmp)
+
+    for field in mc.get_fields('600'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_600.append(tmp)
+
+    for field in mc.get_fields('655'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_655.append(tmp)
+
+    for field in mc.get_fields('700'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_700.append(tmp)
+
+    for field in mc.get_fields('710'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_710.append(tmp)
+
+    for field in mc.get_fields('856'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_856.append(tmp)
+
+
+with io.open("output/res_024.txt", "w", encoding="utf-8") as f:
+    f.write(u"024:\n\n")
+    for l in f_024:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_041.txt", "w", encoding="utf-8") as f:
     f.write(u"041:\n\n")
     for l in f_041:
         f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
@@ -176,15 +213,50 @@ with io.open("output/res_534.txt", "w", encoding="utf-8") as f:
     for l in f_534:
         f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
-"""
-    ff = []
+with io.open("output/res_544.txt", "w", encoding="utf-8") as f:
+    f.write(u"544:\n\n")
+    for l in f_544:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
-    for field in mc.get_fields('505'):
-        print(unicode(field))
-        print(str(mc))
-        ff.append(field)
-    if len(ff) == 0:
-        print("No field 505 in: {}".format(sys_no))
-    else:
-        print(str(mc))
-"""
+with io.open("output/res_581.txt", "w", encoding="utf-8") as f:
+    f.write(u"581:\n\n")
+    for l in f_581:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_596.txt", "w", encoding="utf-8") as f:
+    f.write(u"596:\n\n")
+    for l in f_596:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_600.txt", "w", encoding="utf-8") as f:
+    f.write(u"600:\n\n")
+    for l in f_600:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_655.txt", "w", encoding="utf-8") as f:
+    f.write(u"655:\n\n")
+    for l in f_655:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_700.txt", "w", encoding="utf-8") as f:
+    f.write(u"700:\n\n")
+    for l in f_700:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_700-12.txt", "w", encoding="utf-8") as f:
+    f.write(u"700 12:\n\n")
+    for l in f_700:
+        if hasattr(l[1], 'indicator2'):
+            in2 = l[1].indicator2
+            if in2 != ' ':
+                f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_710.txt", "w", encoding="utf-8") as f:
+    f.write(u"710:\n\n")
+    for l in f_710:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_856.txt", "w", encoding="utf-8") as f:
+    f.write(u"856:\n\n")
+    for l in f_856:
+        f.write(u"{}\t{}\t\t{}\n".format(unicode(l[0]), unicode(l[1]), l[1].format_field()))
