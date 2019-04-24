@@ -1,6 +1,6 @@
 from pymarc import MARCReader
 from PyZ3950 import zoom
-import os
+import os, codecs, io
 
 file_name = "all_numbers.txt"
 
@@ -10,6 +10,9 @@ with open(file_name) as f:
 print("found numbers: " + str(len(res)))
 print("")
 
+f_041 = []
+f_546 = []
+f_246_3 = []
 f_505 = []
 f_510 = []
 f_525 = []
@@ -53,6 +56,23 @@ for sys_no in res:
         print(str(mc))
     """
 
+    for field in mc.get_fields('041'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_041.append(tmp)
+
+    for field in mc.get_fields('546'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_546.append(tmp)
+        if len(mc.get_fields('546')) > 1:
+            f_546.append([u'\t\t !!!! Mehrfach !!!!', u''])
+
+    for field in mc.get_fields('246'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_246_3.append(tmp)
+
     for field in mc.get_fields('505'):
         if field is not None:
             tmp = [sys_no, field]
@@ -68,6 +88,7 @@ for sys_no in res:
             tmp = [sys_no, field]
             f_525.append(tmp)
 
+"""
 print("\n\n\n505:\n")
 for l in f_505:
     print(u"{}\t{}".format(unicode(l[0]), unicode(l[1])))
@@ -79,6 +100,37 @@ for l in f_510:
 print("\n\n\n525:\n")
 for l in f_525:
     print(u"{}\t{}".format(unicode(l[0]), unicode(l[1])))
+"""
+
+with io.open("output/res_401.txt", "w", encoding="utf-8") as f:
+    f.write(u"041:\n\n")
+    for l in f_041:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_546.txt", "w", encoding="utf-8") as f:
+    f.write(u"546:\n\n")
+    for l in f_546:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_246.txt", "w", encoding="utf-8") as f:
+    f.write(u"246 3:\n\n")
+    for l in f_246_3:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_505.txt", "w", encoding="utf-8") as f:
+    f.write(u"505:\n\n")
+    for l in f_505:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_510.txt", "w", encoding="utf-8") as f:
+    f.write(u"510:\n\n")
+    for l in f_510:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_525.txt", "w", encoding="utf-8") as f:
+    f.write(u"525:\n\n")
+    for l in f_525:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
 """
     ff = []
