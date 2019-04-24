@@ -13,9 +13,13 @@ print("")
 f_041 = []
 f_546 = []
 f_246_3 = []
+f_250 = []
+f_490 = []
 f_505 = []
 f_510 = []
 f_525 = []
+f_533 = []
+f_534 = []
 
 for sys_no in res:
     sys_no = sys_no.strip()
@@ -73,6 +77,16 @@ for sys_no in res:
             tmp = [sys_no, field]
             f_246_3.append(tmp)
 
+    for field in mc.get_fields('250'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_250.append(tmp)
+
+    for field in mc.get_fields('490'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_490.append(tmp)
+
     for field in mc.get_fields('505'):
         if field is not None:
             tmp = [sys_no, field]
@@ -87,6 +101,16 @@ for sys_no in res:
         if field is not None:
             tmp = [sys_no, field]
             f_525.append(tmp)
+
+    for field in mc.get_fields('533'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_533.append(tmp)
+
+    for field in mc.get_fields('534'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_534.append(tmp)
 
 """
 print("\n\n\n505:\n")
@@ -117,6 +141,16 @@ with io.open("output/res_246.txt", "w", encoding="utf-8") as f:
     for l in f_246_3:
         f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
+with io.open("output/res_250.txt", "w", encoding="utf-8") as f:
+    f.write(u"250:\n\n")
+    for l in f_250:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_490.txt", "w", encoding="utf-8") as f:
+    f.write(u"490:\n\n")
+    for l in f_490:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
 with io.open("output/res_505.txt", "w", encoding="utf-8") as f:
     f.write(u"505:\n\n")
     for l in f_505:
@@ -130,6 +164,16 @@ with io.open("output/res_510.txt", "w", encoding="utf-8") as f:
 with io.open("output/res_525.txt", "w", encoding="utf-8") as f:
     f.write(u"525:\n\n")
     for l in f_525:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_533.txt", "w", encoding="utf-8") as f:
+    f.write(u"533:\n\n")
+    for l in f_533:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_534.txt", "w", encoding="utf-8") as f:
+    f.write(u"534:\n\n")
+    for l in f_534:
         f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
 """
