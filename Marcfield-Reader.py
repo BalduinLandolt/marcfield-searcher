@@ -41,6 +41,7 @@ f_600 = []
 f_700 = []
 f_610 = []
 f_264 = []
+f_300 = []
 
 for sys_no in res:
     sys_no = sys_no.strip()
@@ -204,6 +205,11 @@ for sys_no in res:
         if field is not None:
             tmp = [sys_no, field]
             f_264.append(tmp)
+
+    for field in mc.get_fields('300'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_300.append(tmp)
 
 
 with io.open("output/res_024.txt", "w", encoding="utf-8") as f:
@@ -390,6 +396,11 @@ with io.open("output/res_264_subfield_b.txt", "w", encoding="utf-8") as f:
         if s_b is not None:
             f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(s_b)))
 
+with io.open("output/extra_res_300.txt", "w", encoding="utf-8") as f:
+    f.write(u"300:\n\n")
+    for l in f_300:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
 
 
 with io.open("output/cardinality.txt", "w", encoding="utf-8") as f:
@@ -460,6 +471,14 @@ with io.open("output/cardinality.txt", "w", encoding="utf-8") as f:
     f.write(u"264:\n\n")
     for m in marx:
         fields = m[1].get_fields('264')
+        card = len(fields)
+        f.write(u"{}\t{}\n".format(unicode(m[0]), unicode(card)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    f.write(u"300:\n\n")
+    for m in marx:
+        fields = m[1].get_fields('300')
         card = len(fields)
         f.write(u"{}\t{}\n".format(unicode(m[0]), unicode(card)))
 
@@ -676,6 +695,30 @@ with io.open("output/cardinality_short.txt", "w", encoding="utf-8") as f:
         else:
             multiple = multiple + 1
     f.write(u"264:\n\n")
+    f.write(u"0: {}\n".format(unicode(zero)))
+    f.write(u"1: {}\n".format(unicode(one)))
+    f.write(u"2: {}\n".format(unicode(two)))
+    f.write(u"+: {}\n".format(unicode(multiple)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    zero = 0
+    one = 0
+    two = 0
+    multiple = 0
+
+    for m in marx:
+        fields = m[1].get_fields('300')
+        card = len(fields)
+        if card == 0:
+            zero = zero + 1
+        elif card == 1:
+            one = one + 1
+        elif card == 2:
+            two = two + 1
+        else:
+            multiple = multiple + 1
+    f.write(u"300:\n\n")
     f.write(u"0: {}\n".format(unicode(zero)))
     f.write(u"1: {}\n".format(unicode(one)))
     f.write(u"2: {}\n".format(unicode(two)))
