@@ -39,6 +39,8 @@ f_046 = []
 f_100 = []
 f_600 = []
 f_700 = []
+f_610 = []
+f_264 = []
 
 for sys_no in res:
     sys_no = sys_no.strip()
@@ -193,6 +195,16 @@ for sys_no in res:
             tmp = [sys_no, field]
             f_700.append(tmp)
 
+    for field in mc.get_fields('610'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_610.append(tmp)
+
+    for field in mc.get_fields('264'):
+        if field is not None:
+            tmp = [sys_no, field]
+            f_264.append(tmp)
+
 
 with io.open("output/res_024.txt", "w", encoding="utf-8") as f:
     f.write(u"024:\n\n")
@@ -324,10 +336,59 @@ with io.open("output/extra_res_600_subfield_2.txt", "w", encoding="utf-8") as f:
     for l in f_600:
         f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['2'])))
 
+with io.open("output/extra_res_700_subfield_4_and_e.txt", "w", encoding="utf-8") as f:
+    f.write(u"700 sub 4:\n\n")
+    for l in f_700:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['4'])))
+    f.write(u"\n\n\n700 sub e:\n\n")
+    for l in f_700:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['e'])))
+    f.write(u"\n\n\noverview:\n\n")
+    s_aut = 0
+    s_rcp = 0
+    s_none = 0
+    for l in f_700:
+        val = l[1]['4']
+        if val == 'aut':
+            s_aut = s_aut + 1
+        elif val == 'rcp':
+            s_rcp = s_rcp + 1
+        elif val is None:
+            s_none = s_none + 1
+        else:
+            f.write(val + "\n")
+    f.write(u"None: " + unicode(s_none) + "\n")
+    f.write(u"aut: " + unicode(s_aut) + "\n")
+    f.write(u"rcp: " + unicode(s_rcp) + "\n")
+
+with io.open("output/res_700_subfield_e_as_scr.txt", "w", encoding="utf-8") as f:
+    f.write(u"\n\n\n700 sub e:\n\n")
+    for l in f_700:
+        val = l[1]['4']
+        if val is not None and val.startswith('scr'):
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
 with io.open("output/extra_res_700.txt", "w", encoding="utf-8") as f:
     f.write(u"700:\n\n")
     for l in f_700:
         f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/extra_res_610.txt", "w", encoding="utf-8") as f:
+    f.write(u"610:\n\n")
+    for l in f_610:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_264.txt", "w", encoding="utf-8") as f:
+    f.write(u"264:\n\n")
+    for l in f_264:
+        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+
+with io.open("output/res_264_subfield_b.txt", "w", encoding="utf-8") as f:
+    f.write(u"264 sub b:\n\n")
+    for l in f_264:
+        s_b = l[1]['b']
+        if s_b is not None:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(s_b)))
 
 
 
@@ -367,6 +428,38 @@ with io.open("output/cardinality.txt", "w", encoding="utf-8") as f:
     f.write(u"700:\n\n")
     for m in marx:
         fields = m[1].get_fields('700')
+        card = len(fields)
+        f.write(u"{}\t{}\n".format(unicode(m[0]), unicode(card)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    f.write(u"610:\n\n")
+    for m in marx:
+        fields = m[1].get_fields('610')
+        card = len(fields)
+        f.write(u"{}\t{}\n".format(unicode(m[0]), unicode(card)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    f.write(u"710:\n\n")
+    for m in marx:
+        fields = m[1].get_fields('710')
+        card = len(fields)
+        f.write(u"{}\t{}\n".format(unicode(m[0]), unicode(card)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    f.write(u"250:\n\n")
+    for m in marx:
+        fields = m[1].get_fields('250')
+        card = len(fields)
+        f.write(u"{}\t{}\n".format(unicode(m[0]), unicode(card)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    f.write(u"264:\n\n")
+    for m in marx:
+        fields = m[1].get_fields('264')
         card = len(fields)
         f.write(u"{}\t{}\n".format(unicode(m[0]), unicode(card)))
 
@@ -487,6 +580,102 @@ with io.open("output/cardinality_short.txt", "w", encoding="utf-8") as f:
         else:
             multiple = multiple + 1
     f.write(u"700:\n\n")
+    f.write(u"0: {}\n".format(unicode(zero)))
+    f.write(u"1: {}\n".format(unicode(one)))
+    f.write(u"2: {}\n".format(unicode(two)))
+    f.write(u"+: {}\n".format(unicode(multiple)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    zero = 0
+    one = 0
+    two = 0
+    multiple = 0
+
+    for m in marx:
+        fields = m[1].get_fields('610')
+        card = len(fields)
+        if card == 0:
+            zero = zero + 1
+        elif card == 1:
+            one = one + 1
+        elif card == 2:
+            two = two + 1
+        else:
+            multiple = multiple + 1
+    f.write(u"610:\n\n")
+    f.write(u"0: {}\n".format(unicode(zero)))
+    f.write(u"1: {}\n".format(unicode(one)))
+    f.write(u"2: {}\n".format(unicode(two)))
+    f.write(u"+: {}\n".format(unicode(multiple)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    zero = 0
+    one = 0
+    two = 0
+    multiple = 0
+
+    for m in marx:
+        fields = m[1].get_fields('710')
+        card = len(fields)
+        if card == 0:
+            zero = zero + 1
+        elif card == 1:
+            one = one + 1
+        elif card == 2:
+            two = two + 1
+        else:
+            multiple = multiple + 1
+    f.write(u"710:\n\n")
+    f.write(u"0: {}\n".format(unicode(zero)))
+    f.write(u"1: {}\n".format(unicode(one)))
+    f.write(u"2: {}\n".format(unicode(two)))
+    f.write(u"+: {}\n".format(unicode(multiple)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    zero = 0
+    one = 0
+    two = 0
+    multiple = 0
+
+    for m in marx:
+        fields = m[1].get_fields('250')
+        card = len(fields)
+        if card == 0:
+            zero = zero + 1
+        elif card == 1:
+            one = one + 1
+        elif card == 2:
+            two = two + 1
+        else:
+            multiple = multiple + 1
+    f.write(u"250:\n\n")
+    f.write(u"0: {}\n".format(unicode(zero)))
+    f.write(u"1: {}\n".format(unicode(one)))
+    f.write(u"2: {}\n".format(unicode(two)))
+    f.write(u"+: {}\n".format(unicode(multiple)))
+
+    f.write(u'\n\n------------------------------\n\n\n')
+
+    zero = 0
+    one = 0
+    two = 0
+    multiple = 0
+
+    for m in marx:
+        fields = m[1].get_fields('264')
+        card = len(fields)
+        if card == 0:
+            zero = zero + 1
+        elif card == 1:
+            one = one + 1
+        elif card == 2:
+            two = two + 1
+        else:
+            multiple = multiple + 1
+    f.write(u"264:\n\n")
     f.write(u"0: {}\n".format(unicode(zero)))
     f.write(u"1: {}\n".format(unicode(one)))
     f.write(u"2: {}\n".format(unicode(two)))
