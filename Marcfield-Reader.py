@@ -424,259 +424,43 @@ with io.open("output/comparison_250_655.txt", "w", encoding="utf-8") as f:
         f.write(u"{} Mal: {}".format(d[pair], pair))
 
 
-"""
-Cardinality short
-"""
-
-with io.open("output/cardinality_short.txt", "w", encoding="utf-8") as f:
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
+def print_cardinality_for_field(out_file, field):
+    cardinality = __Cardinality()
     for m in marx:
-        fields = m[1].get_fields('024')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"024:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
+        ff = m[1].get_fields(field)
+        cardinality.add_cardinality(len(ff))
+    out_file.write(u"{}:\n\n".format(field))
+    out_file.write(unicode(cardinality))
+    out_file.write(u'\n\n------------------------------\n\n\n')
 
-    f.write(u'\n\n------------------------------\n\n\n')
 
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('856')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"856:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
-
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('100')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"100:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
-
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('600')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"600:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
-
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('700')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"700:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
-
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('610')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"610:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
-
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('710')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"710:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
-
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('250')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"250:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
-
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('264')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"264:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
-
-    zero = 0
-    one = 0
-    two = 0
-    multiple = 0
-
-    for m in marx:
-        fields = m[1].get_fields('300')
-        card = len(fields)
-        if card == 0:
-            zero = zero + 1
-        elif card == 1:
-            one = one + 1
-        elif card == 2:
-            two = two + 1
-        else:
-            multiple = multiple + 1
-    f.write(u"300:\n\n")
-    f.write(u"0: {}\n".format(unicode(zero)))
-    f.write(u"1: {}\n".format(unicode(one)))
-    f.write(u"2: {}\n".format(unicode(two)))
-    f.write(u"+: {}\n".format(unicode(multiple)))
-
-    f.write(u'\n\n------------------------------\n\n\n')
+def print_field_cardinality():
+    fields = [
+        '024',
+        '856',
+        '100',
+        '600',
+        '700',
+        '610',
+        '710',
+        '250',
+        '264',
+        '300'
+    ]
+    with io.open("output/cardinality_fields.txt", "w", encoding="utf-8") as out_file:
+        out_file.write(u"Cardinality of Fields:\n")
+        out_file.write(u"=========================\n\n\n")
+        for field in fields:
+            print_cardinality_for_field(out_file, field)
 
 
 def print_subfield_cardinality():
     """
     Cardinality Subfields
     """
-    with io.open("output/cardinality_subfields.txt", "w", encoding="utf-8") as f:
-        f.write(u"Cardinality of Subfields:\n")
-        f.write(u"=========================\n\n\n")
+    with io.open("output/cardinality_subfields.txt", "w", encoding="utf-8") as out_file:
+        out_file.write(u"Cardinality of Subfields:\n")
+        out_file.write(u"=========================\n\n\n")
 
         fields = {
             '024': ['a'],
@@ -692,38 +476,37 @@ def print_subfield_cardinality():
         }
 
         for field_name in fields:
-            print_subfield_cardinality_for_field(f, fields, field_name)
-            f.write(u"\n\n\n--------------------------------------------------------\n\n\n")
+            print_subfield_cardinality_for_field(out_file, fields, field_name)
+            out_file.write(u"\n\n\n--------------------------------------------------------\n\n\n")
 
 
-def print_subfield_cardinality_for_field(f, fields, field_name):
-    f.write(u"Field: {}\n\n".format(field_name))
+def print_subfield_cardinality_for_field(out_file, fields, field_name):
+    out_file.write(u"Field: {}\n\n".format(field_name))
     for subfield_name in fields.get(field_name):
-        print_cardinality_for_subfield(f, field_name, subfield_name)
+        print_cardinality_for_subfield(out_file, field_name, subfield_name)
 
 
-def print_cardinality_for_subfield(f, field_name, subfield_name):
-    f.write(u"{}:\n".format(subfield_name))
+def print_cardinality_for_subfield(out_file, field_name, subfield_name):
+    out_file.write(u"{}:\n".format(subfield_name))
     cardinality = __Cardinality()
     for m in marx:
-        mfields = m[1].get_fields(field_name)
-        for mf in mfields:
+        m_fields = m[1].get_fields(field_name)
+        for mf in m_fields:
             if mf is not None:
                 subfields_val = mf.get_subfields(subfield_name)
                 cardinality.add_cardinality(len(subfields_val))
-    f.write(unicode(cardinality))
+    out_file.write(unicode(cardinality))
 
 
 class __Cardinality:
-    zero = 0
-    one = 0
-    multiple = 0
 
     def __init__(self):
-        pass
+        self.zero = 0
+        self.one = 0
+        self.multiple = 0
 
     def __str__(self):
-        res = u"0:\t{}\n1:\t{}\n+:\t{}\n\n".format(zero, one, multiple)
+        res = u"0:\t{}\n1:\t{}\n+:\t{}\n\n".format(self.zero, self.one, self.multiple)
         return res
 
     def add_zero(self):
@@ -748,4 +531,5 @@ if __name__ == "__main__":
     print("Running...")
     load_system_numbers()
     load_marc_data()
+    print_field_cardinality()
     print_subfield_cardinality()
