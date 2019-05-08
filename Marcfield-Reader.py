@@ -402,6 +402,29 @@ with io.open("output/extra_res_300.txt", "w", encoding="utf-8") as f:
         f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
 
+with io.open("output/comparison_250_655.txt", "w", encoding="utf-8") as f:
+    f.write(u"Siehe Zusammenfassung ganz am Schluss.\n\n\n\nSys.No.\t250\t655\n-------\t---\t---\n\n")
+    ss = []
+    for l in f_250:
+        i = f_250.index(l)
+        l2 = f_655[i]
+        f.write(u"{}\t\t{}\t\t\t\t{}\n".format(unicode(l[0]), unicode(l[1]), unicode(l2[1])))
+        ss.append(u"{}\t\t----\t\t{}\n".format(unicode(l[1].format_field()), unicode(l2[1].format_field())))
+    f.write(u"\n\n\n\nOutline:\n\n")
+    d = dict()
+    for s in ss:
+        if s in d:
+            d[s] = d.get(s) + 1
+        else:
+            d[s] = 1
+    for pair in d:
+        f.write(u"{} Mal: {}".format(d[pair], pair))
+
+
+"""
+Cardinality long
+"""
+
 
 with io.open("output/cardinality.txt", "w", encoding="utf-8") as f:
     f.write(u"024:\n\n")
@@ -484,6 +507,10 @@ with io.open("output/cardinality.txt", "w", encoding="utf-8") as f:
 
     f.write(u'\n\n------------------------------\n\n\n')
 
+
+"""
+Cardinality short
+"""
 
 with io.open("output/cardinality_short.txt", "w", encoding="utf-8") as f:
     zero = 0
@@ -725,3 +752,54 @@ with io.open("output/cardinality_short.txt", "w", encoding="utf-8") as f:
     f.write(u"+: {}\n".format(unicode(multiple)))
 
     f.write(u'\n\n------------------------------\n\n\n')
+
+
+"""
+Cardinality Subfields
+"""
+
+with io.open("output/cardinality_subfields.txt", "w", encoding="utf-8") as f:
+    f.write(u"Cardinality of Subfields:\n")
+    f.write(u"=========================\n\n\n")
+
+    fields = {
+        '024': ['a'],
+        '856': ['u'],
+        '100': ['0', '4', 'a', 'b', 'c', 'd', 'e'],
+        '600': ['0', 'a', 'b', 'c', 'd'],
+        '700': ['0', '4', 'a', 'b', 'c', 'd', 'e'],
+        '610': ['0', 'a', 'g'],
+        '710': ['0', '4', 'a', 'b', 'e', 'g'],
+        '250': ['a'],
+        '264': ['a', 'c'],
+        '300': ['a', 'b', 'c', 'e']
+    }
+
+    for key in fields:
+        f.write(u"Field: {}\n\n".format(key))
+        for val in fields.get(key):
+            f.write(u"{}:\n".format(val))
+            zero = 0
+            one = 0
+            multiple = 0
+            for m in marx:
+                mfields = m[1].get_fields(key)
+                for mf in mfields:
+                    if mf is not None:
+                        subfields_val = mf.get_subfields(val)
+                        card = len(subfields_val)
+                        if card == 0:
+                            zero = zero + 1
+                        elif card == 1:
+                            one = one + 1
+                        elif card > 1:
+                            multiple = multiple + 1
+                            print(m[0] + '\t' + key + '\t' + val)
+            f.write(u"0 x:\t{}\n".format(zero))
+            f.write(u"1 x:\t{}\n".format(one))
+            f.write(u"+ x:\t{}\n\n".format(multiple))
+        f.write(u"\n\n\n--------------------------------------------------------\n\n\n")
+
+
+if __name__ == "__main__":
+    print("Running...")
