@@ -5,6 +5,7 @@ import os, io
 
 marx = []
 
+
 def load_system_numbers():
     global sys_numbers
     file_name = "all_numbers.txt"
@@ -208,220 +209,187 @@ f_856 = []
 f_906 = []
 f_046 = []
 f_100 = []
-f_600 = []
-f_700 = []
 f_610 = []
 f_264 = []
 f_300 = []
 
 
-with io.open("output/res_024.txt", "w", encoding="utf-8") as f:
-    f.write(u"024:\n\n")
-    for l in f_024:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_041.txt", "w", encoding="utf-8") as f:
-    f.write(u"041:\n\n")
-    for l in f_041:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_546.txt", "w", encoding="utf-8") as f:
-    f.write(u"546:\n\n")
-    for l in f_546:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_246.txt", "w", encoding="utf-8") as f:
-    f.write(u"246 3:\n\n")
-    for l in f_246_3:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_250.txt", "w", encoding="utf-8") as f:
-    f.write(u"250:\n\n")
-    for l in f_250:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_490.txt", "w", encoding="utf-8") as f:
-    f.write(u"490:\n\n")
-    for l in f_490:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_505.txt", "w", encoding="utf-8") as f:
-    f.write(u"505:\n\n")
-    for l in f_505:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_510.txt", "w", encoding="utf-8") as f:
-    f.write(u"510:\n\n")
-    for l in f_510:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_525.txt", "w", encoding="utf-8") as f:
-    f.write(u"525:\n\n")
-    for l in f_525:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_533.txt", "w", encoding="utf-8") as f:
-    f.write(u"533:\n\n")
-    for l in f_533:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_534.txt", "w", encoding="utf-8") as f:
-    f.write(u"534:\n\n")
-    for l in f_534:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_544.txt", "w", encoding="utf-8") as f:
-    f.write(u"544:\n\n")
-    for l in f_544:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_581.txt", "w", encoding="utf-8") as f:
-    f.write(u"581:\n\n")
-    for l in f_581:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_596.txt", "w", encoding="utf-8") as f:
-    f.write(u"596:\n\n")
-    for l in f_596:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_600.txt", "w", encoding="utf-8") as f:
-    f.write(u"600:\n\n")
-    for l in f_600:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_655.txt", "w", encoding="utf-8") as f:
-    f.write(u"655:\n\n")
-    for l in f_655:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_700.txt", "w", encoding="utf-8") as f:
-    f.write(u"700:\n\n")
-    for l in f_700:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_700-12.txt", "w", encoding="utf-8") as f:
-    f.write(u"700 12:\n\n")
-    for l in f_700:
-        if hasattr(l[1], 'indicator2'):
-            in2 = l[1].indicator2
-            if in2 != ' ':
+def print_all_contents():
+    with io.open("output/res_024.txt", "w", encoding="utf-8") as f:
+        f.write(u"024:\n\n")
+        for l in f_024:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_041.txt", "w", encoding="utf-8") as f:
+        f.write(u"041:\n\n")
+        for l in f_041:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_546.txt", "w", encoding="utf-8") as f:
+        f.write(u"546:\n\n")
+        for l in f_546:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_246.txt", "w", encoding="utf-8") as f:
+        f.write(u"246 3:\n\n")
+        for l in f_246_3:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_250.txt", "w", encoding="utf-8") as f:
+        f.write(u"250:\n\n")
+        for l in f_250:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_490.txt", "w", encoding="utf-8") as f:
+        f.write(u"490:\n\n")
+        for l in f_490:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_505.txt", "w", encoding="utf-8") as f:
+        f.write(u"505:\n\n")
+        for l in f_505:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_510.txt", "w", encoding="utf-8") as f:
+        f.write(u"510:\n\n")
+        for l in f_510:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_525.txt", "w", encoding="utf-8") as f:
+        f.write(u"525:\n\n")
+        for l in f_525:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_533.txt", "w", encoding="utf-8") as f:
+        f.write(u"533:\n\n")
+        for l in f_533:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_534.txt", "w", encoding="utf-8") as f:
+        f.write(u"534:\n\n")
+        for l in f_534:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_544.txt", "w", encoding="utf-8") as f:
+        f.write(u"544:\n\n")
+        for l in f_544:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_581.txt", "w", encoding="utf-8") as f:
+        f.write(u"581:\n\n")
+        for l in f_581:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_596.txt", "w", encoding="utf-8") as f:
+        f.write(u"596:\n\n")
+        for l in f_596:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_600.txt", "w", encoding="utf-8") as f:
+        f.write(u"600:\n\n")
+        for l in f_600:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_655.txt", "w", encoding="utf-8") as f:
+        f.write(u"655:\n\n")
+        for l in f_655:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_700.txt", "w", encoding="utf-8") as f:
+        f.write(u"700:\n\n")
+        for l in f_700:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_700-12.txt", "w", encoding="utf-8") as f:
+        f.write(u"700 12:\n\n")
+        for l in f_700:
+            if hasattr(l[1], 'indicator2'):
+                in2 = l[1].indicator2
+                if in2 != ' ':
+                    f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_710.txt", "w", encoding="utf-8") as f:
+        f.write(u"710:\n\n")
+        for l in f_710:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_856.txt", "w", encoding="utf-8") as f:
+        f.write(u"856:\n\n")
+        for l in f_856:
+            f.write(u"{}\t{}\t\t{}\n".format(unicode(l[0]), unicode(l[1]), l[1].format_field()))
+    with io.open("output/extra_res_906.txt", "w", encoding="utf-8") as f:
+        f.write(u"906:\n\n")
+        for l in f_906:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_046.txt", "w", encoding="utf-8") as f:
+        f.write(u"046:\n\n")
+        for l in f_046:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_100.txt", "w", encoding="utf-8") as f:
+        f.write(u"100:\n\n")
+        for l in f_100:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_600.txt", "w", encoding="utf-8") as f:
+        f.write(u"600:\n\n")
+        for l in f_600:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_600_subfield_2.txt", "w", encoding="utf-8") as f:
+        f.write(u"600:\n\n")
+        for l in f_600:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['2'])))
+    with io.open("output/extra_res_700_subfield_4_and_e.txt", "w", encoding="utf-8") as f:
+        f.write(u"700 sub 4:\n\n")
+        for l in f_700:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['4'])))
+        f.write(u"\n\n\n700 sub e:\n\n")
+        for l in f_700:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['e'])))
+        f.write(u"\n\n\noverview:\n\n")
+        s_aut = 0
+        s_rcp = 0
+        s_none = 0
+        for l in f_700:
+            sufield_name = l[1]['4']
+            if sufield_name == 'aut':
+                s_aut = s_aut + 1
+            elif sufield_name == 'rcp':
+                s_rcp = s_rcp + 1
+            elif sufield_name is None:
+                s_none = s_none + 1
+            else:
+                f.write(sufield_name + "\n")
+        f.write(u"None: " + unicode(s_none) + "\n")
+        f.write(u"aut: " + unicode(s_aut) + "\n")
+        f.write(u"rcp: " + unicode(s_rcp) + "\n")
+    with io.open("output/res_700_subfield_e_as_scr.txt", "w", encoding="utf-8") as f:
+        f.write(u"\n\n\n700 sub e:\n\n")
+        for l in f_700:
+            sufield_name = l[1]['4']
+            if sufield_name is not None and sufield_name.startswith('scr'):
                 f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_710.txt", "w", encoding="utf-8") as f:
-    f.write(u"710:\n\n")
-    for l in f_710:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_856.txt", "w", encoding="utf-8") as f:
-    f.write(u"856:\n\n")
-    for l in f_856:
-        f.write(u"{}\t{}\t\t{}\n".format(unicode(l[0]), unicode(l[1]), l[1].format_field()))
-
-
-
-with io.open("output/extra_res_906.txt", "w", encoding="utf-8") as f:
-    f.write(u"906:\n\n")
-    for l in f_906:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/extra_res_046.txt", "w", encoding="utf-8") as f:
-    f.write(u"046:\n\n")
-    for l in f_046:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/extra_res_100.txt", "w", encoding="utf-8") as f:
-    f.write(u"100:\n\n")
-    for l in f_100:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/extra_res_600.txt", "w", encoding="utf-8") as f:
-    f.write(u"600:\n\n")
-    for l in f_600:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/extra_res_600_subfield_2.txt", "w", encoding="utf-8") as f:
-    f.write(u"600:\n\n")
-    for l in f_600:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['2'])))
-
-with io.open("output/extra_res_700_subfield_4_and_e.txt", "w", encoding="utf-8") as f:
-    f.write(u"700 sub 4:\n\n")
-    for l in f_700:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['4'])))
-    f.write(u"\n\n\n700 sub e:\n\n")
-    for l in f_700:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['e'])))
-    f.write(u"\n\n\noverview:\n\n")
-    s_aut = 0
-    s_rcp = 0
-    s_none = 0
-    for l in f_700:
-        sufield_name = l[1]['4']
-        if sufield_name == 'aut':
-            s_aut = s_aut + 1
-        elif sufield_name == 'rcp':
-            s_rcp = s_rcp + 1
-        elif sufield_name is None:
-            s_none = s_none + 1
-        else:
-            f.write(sufield_name + "\n")
-    f.write(u"None: " + unicode(s_none) + "\n")
-    f.write(u"aut: " + unicode(s_aut) + "\n")
-    f.write(u"rcp: " + unicode(s_rcp) + "\n")
-
-with io.open("output/res_700_subfield_e_as_scr.txt", "w", encoding="utf-8") as f:
-    f.write(u"\n\n\n700 sub e:\n\n")
-    for l in f_700:
-        sufield_name = l[1]['4']
-        if sufield_name is not None and sufield_name.startswith('scr'):
+    with io.open("output/extra_res_700.txt", "w", encoding="utf-8") as f:
+        f.write(u"700:\n\n")
+        for l in f_700:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_610.txt", "w", encoding="utf-8") as f:
+        f.write(u"610:\n\n")
+        for l in f_610:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_264.txt", "w", encoding="utf-8") as f:
+        f.write(u"264:\n\n")
+        for l in f_264:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/res_264_subfield_b.txt", "w", encoding="utf-8") as f:
+        f.write(u"264 sub b:\n\n")
+        for l in f_264:
+            s_b = l[1]['b']
+            if s_b is not None:
+                f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(s_b)))
+    with io.open("output/extra_res_300.txt", "w", encoding="utf-8") as f:
+        f.write(u"300:\n\n")
+        for l in f_300:
             f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
-with io.open("output/extra_res_700.txt", "w", encoding="utf-8") as f:
-    f.write(u"700:\n\n")
-    for l in f_700:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
-with io.open("output/extra_res_610.txt", "w", encoding="utf-8") as f:
-    f.write(u"610:\n\n")
-    for l in f_610:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_264.txt", "w", encoding="utf-8") as f:
-    f.write(u"264:\n\n")
-    for l in f_264:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-with io.open("output/res_264_subfield_b.txt", "w", encoding="utf-8") as f:
-    f.write(u"264 sub b:\n\n")
-    for l in f_264:
-        s_b = l[1]['b']
-        if s_b is not None:
-            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(s_b)))
-
-with io.open("output/extra_res_300.txt", "w", encoding="utf-8") as f:
-    f.write(u"300:\n\n")
-    for l in f_300:
-        f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
-
-
-with io.open("output/comparison_250_655.txt", "w", encoding="utf-8") as f:
-    f.write(u"Siehe Zusammenfassung ganz am Schluss.\n\n\n\nSys.No.\t250\t655\n-------\t---\t---\n\n")
-    ss = []
-    for l in f_250:
-        i = f_250.index(l)
-        l2 = f_655[i]
-        f.write(u"{}\t\t{}\t\t\t\t{}\n".format(unicode(l[0]), unicode(l[1]), unicode(l2[1])))
-        ss.append(u"{}\t\t----\t\t{}\n".format(unicode(l[1].format_field()), unicode(l2[1].format_field())))
-    f.write(u"\n\n\n\nOutline:\n\n")
-    d = dict()
-    for s in ss:
-        if s in d:
-            d[s] = d.get(s) + 1
-        else:
-            d[s] = 1
-    for pair in d:
-        f.write(u"{} Mal: {}".format(d[pair], pair))
+def print_special_cases():
+    with io.open("output/comparison_250_655.txt", "w", encoding="utf-8") as out_file:
+        out_file.write(u"Siehe Zusammenfassung ganz am Schluss.\n\n\n\nSys.No.\t250\t655\n-------\t---\t---\n\n")
+        ss = []
+        for l in f_250:
+            i = f_250.index(l)
+            l2 = f_655[i]
+            out_file.write(u"{}\t\t{}\t\t\t\t{}\n".format(unicode(l[0]), unicode(l[1]), unicode(l2[1])))
+            ss.append(u"{}\t\t----\t\t{}\n".format(unicode(l[1].format_field()), unicode(l2[1].format_field())))
+        out_file.write(u"\n\n\n\nOutline:\n\n")
+        d = dict()
+        for s in ss:
+            if s in d:
+                d[s] = d.get(s) + 1
+            else:
+                d[s] = 1
+        for pair in d:
+            out_file.write(u"{} Mal: {}".format(d[pair], pair))
 
 
 def print_cardinality_for_field(out_file, field):
@@ -531,5 +499,7 @@ if __name__ == "__main__":
     print("Running...")
     load_system_numbers()
     load_marc_data()
+    print_all_contents()
     print_field_cardinality()
     print_subfield_cardinality()
+    print_special_cases()
