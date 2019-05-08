@@ -3,6 +3,7 @@ from pymarc import Record, Field
 from PyZ3950 import zoom
 import os, io
 
+marx = []
 
 def load_system_numbers():
     global sys_numbers
@@ -15,8 +16,7 @@ def load_system_numbers():
 
 
 def load_marc_data():
-    global marx, sys_numbers
-    marx = []
+    global sys_numbers
 
     for sys_no in sys_numbers:
         sys_no = sys_no.strip()
