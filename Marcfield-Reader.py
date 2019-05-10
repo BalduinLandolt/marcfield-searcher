@@ -185,6 +185,26 @@ def load_marc_data():
                 tmp = [sys_no, field]
                 f_300.append(tmp)
 
+        for field in mc.get_fields('500'):
+            if field is not None:
+                tmp = [sys_no, field]
+                f_500.append(tmp)
+
+        for field in mc.get_fields('520'):
+            if field is not None:
+                tmp = [sys_no, field]
+                f_520.append(tmp)
+
+        for field in mc.get_fields('751'):
+            if field is not None:
+                tmp = [sys_no, field]
+                f_751.append(tmp)
+
+        for field in mc.get_fields('852'):
+            if field is not None:
+                tmp = [sys_no, field]
+                f_852.append(tmp)
+
 
 f_024 = []
 f_041 = []
@@ -212,6 +232,10 @@ f_100 = []
 f_610 = []
 f_264 = []
 f_300 = []
+f_500 = []
+f_520 = []
+f_751 = []
+f_852 = []
 
 
 def print_all_contents():
@@ -370,6 +394,26 @@ def print_all_contents():
         f.write(u"300:\n\n")
         for l in f_300:
             f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_500.txt", "w", encoding="utf-8") as f:
+        f.write(u"500:\n\n")
+        for l in f_500:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_520.txt", "w", encoding="utf-8") as f:
+        f.write(u"520:\n\n")
+        for l in f_520:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_581_sub_i.txt", "w", encoding="utf-8") as f:
+        f.write(u"581 Subfield i:\n\n")
+        for l in f_581:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1]['i'])))
+    with io.open("output/extra_res_751.txt", "w", encoding="utf-8") as f:
+        f.write(u"751:\n\n")
+        for l in f_751:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
+    with io.open("output/extra_res_852.txt", "w", encoding="utf-8") as f:
+        f.write(u"852:\n\n")
+        for l in f_852:
+            f.write(u"{}\t{}\n".format(unicode(l[0]), unicode(l[1])))
 
 
 def print_special_cases():
@@ -397,12 +441,17 @@ def print_cardinality_for_field(out_file, field):
     for m in marx:
         ff = m[1].get_fields(field)
         cardinality.add_cardinality(len(ff))
+        if len(ff) > 1:
+            print("Multiple for {} in: {}".format(field, m[0]))
     out_file.write(u"{}:\n\n".format(field))
     out_file.write(unicode(cardinality))
     out_file.write(u'\n\n------------------------------\n\n\n')
 
 
 def print_field_cardinality():
+
+    # TODO fields
+
     fields = [
         '024',
         '856',
@@ -413,7 +462,15 @@ def print_field_cardinality():
         '710',
         '250',
         '264',
-        '300'
+        '300',
+        '500',
+        '520',
+        '525',
+        '041',
+        '546',
+        '581',
+        '751',
+        '852'
     ]
     with io.open("output/cardinality_fields.txt", "w", encoding="utf-8") as out_file:
         out_file.write(u"Cardinality of Fields:\n")
@@ -430,6 +487,8 @@ def print_subfield_cardinality():
         out_file.write(u"Cardinality of Subfields:\n")
         out_file.write(u"=========================\n\n\n")
 
+        # TODO subfields
+
         fields = {
             '024': ['a'],
             '856': ['u'],
@@ -440,7 +499,15 @@ def print_subfield_cardinality():
             '710': ['0', '4', 'a', 'b', 'e', 'g'],
             '250': ['a'],
             '264': ['a', 'c'],
-            '300': ['a', 'b', 'c', 'e']
+            '300': ['a', 'b', 'c', 'e'],
+            '500': ['a'],
+            '520': ['a', 'b', '3'],
+            '525': ['a'],
+            '041': ['a', 'h'],
+            '546': ['a'],
+            '581': ['a', 'i'],
+            '751': ['a', 'g', '0', '6'],
+            '852': ['a', 'b', 'c', 'n', 'p', 'q', 'x', 'z']
         }
 
         for field_name in fields:
@@ -463,6 +530,8 @@ def print_cardinality_for_subfield(out_file, field_name, subfield_name):
             if mf is not None:
                 subfields_val = mf.get_subfields(subfield_name)
                 cardinality.add_cardinality(len(subfields_val))
+                if len(subfields_val) > 1:
+                    print("Multiple for {} Subfield {} in: {}".format(field_name, subfield_name, m[0]))
     out_file.write(unicode(cardinality))
 
 
