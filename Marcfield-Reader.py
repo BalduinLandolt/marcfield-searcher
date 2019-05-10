@@ -417,6 +417,24 @@ def print_all_contents():
 
 
 def print_special_cases():
+    with io.open("output/no_date.txt", "w", encoding="utf-8") as out_file:
+        for m in marx:
+            if m[1].get_fields('046') is None:
+                out_file.write(m[0])
+            if len(m[1].get_fields('046')) == 0:
+                out_file.write(unicode(m[0]))
+
+    with io.open("output/date_sub_a.txt", "w", encoding="utf-8") as out_file:
+        contents_of_field = []
+        for m in marx:
+            f = m[1].get_fields('046')
+            if (f is not None) & (len(f) > 0):
+                c = f[0].get_subfields('a')
+                if c not in contents_of_field:
+                    contents_of_field.append(c)
+        for c in contents_of_field:
+            out_file.write(u"{}\n".format(c))
+
     with io.open("output/comparison_250_655.txt", "w", encoding="utf-8") as out_file:
         out_file.write(u"Siehe Zusammenfassung ganz am Schluss.\n\n\n\nSys.No.\t250\t655\n-------\t---\t---\n\n")
         ss = []
@@ -470,7 +488,8 @@ def print_field_cardinality():
         '546',
         '581',
         '751',
-        '852'
+        '852',
+        '046'
     ]
     with io.open("output/cardinality_fields.txt", "w", encoding="utf-8") as out_file:
         out_file.write(u"Cardinality of Fields:\n")
@@ -507,7 +526,8 @@ def print_subfield_cardinality():
             '546': ['a'],
             '581': ['a', 'i'],
             '751': ['a', 'g', '0', '6'],
-            '852': ['a', 'b', 'c', 'n', 'p', 'q', 'x', 'z']
+            '852': ['a', 'b', 'c', 'n', 'p', 'q', 'x', 'z'],
+            '046': ['a', 'b', 'c', 'd', 'e']
         }
 
         for field_name in fields:
