@@ -489,7 +489,10 @@ def print_field_cardinality():
         '581',
         '751',
         '852',
-        '046'
+        '046',
+        '533',
+        '534',
+        '544'
     ]
     with io.open("output/cardinality_fields.txt", "w", encoding="utf-8") as out_file:
         out_file.write(u"Cardinality of Fields:\n")
@@ -527,7 +530,10 @@ def print_subfield_cardinality():
             '581': ['a', 'i'],
             '751': ['a', 'g', '0', '6'],
             '852': ['a', 'b', 'c', 'n', 'p', 'q', 'x', 'z'],
-            '046': ['a', 'b', 'c', 'd', 'e']
+            '046': ['a', 'b', 'c', 'd', 'e'],
+            '533': ['a', 'b', 'c', 'd', 'n'],
+            '534': ['n'],
+            '544': ['n']
         }
 
         for field_name in fields:
